@@ -19,6 +19,5 @@ def clicked():
 
 btn = Button(window, text="Start simulation", command=clicked)
 btn.grid(column=0, row=0)
+window.mainloop()
 
-if __name__ == '__main__':
-    window.mainloop()
