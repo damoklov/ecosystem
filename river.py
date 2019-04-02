@@ -11,7 +11,7 @@ class River:
             assert 0 <= place <= len(self.ecosystem) - 1
             assert self.ecosystem[place] is None
         except AssertionError:
-            print('Ecosystem has fixed borders!')
+            print('Ecosystem has fixed size. Try another place!')
             return None
         else:
             self.ecosystem[place] = animal_obj
@@ -34,7 +34,7 @@ class River:
             if to_place:
                 if self.animals:
                     animal = rnd.choice(self.animals)
-                    self.ecosystem[i] = animal
+                    self.add_animal(animal, i)
                     self.animals.remove(animal)
                 else:
                     break

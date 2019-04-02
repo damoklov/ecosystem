@@ -1,4 +1,5 @@
 import time
+import re
 from river import River
 from animals import Bear, Fish
 
@@ -29,6 +30,19 @@ class Visualization:
         return animals, ecosystem, cycles
 
 
+def find_matches(searched_text):
+    char = searched_text.group()
+    assert ord(char) > 0xffff
+    encoded = char.encode('utf-16-le')
+    return (chr(int.from_bytes(encoded[:2], 'little')) +
+            chr(int.from_bytes(encoded[2:], 'little')))
+
+
+def return_recompiled(text):
+    compiled = re.compile(r'[\U00010000-\U0010FFFF]')
+    return compiled.sub(find_matches, text)
+
+
 def read_input():
     print('GREETINGS IN ECOSYSTEM 1.0!')
     river = input('Enter how big the river should be: ')
@@ -39,7 +53,6 @@ def read_input():
 
 
 def automatic_simulation():
-    print('GREETINGS IN ECOSYSTEM 1.0!')
     river = '20'
     repeats = '5'
     bears = '4'
@@ -67,16 +80,41 @@ def initialize_parameters(automatic=True):
 def launch_cycle():
     animals, ecosystem, cycles = initialize_parameters()
     ecosystem.generate_ecosystem()
+
+    print('GREETINGS IN ECOSYSTEM 1.0!')
     print(ecosystem)
     print('Bears here: ', ecosystem.count_animals('bear'))
     print('Fish here: ', ecosystem.count_animals('fish'))
+
     for step in range(cycles):
         time.sleep(0.5)
-        new_ecosystem = ecosystem.update_ecosystem(
-            steps=1)  # using <steps> only for testing purpose
+        new_ecosystem = ecosystem.update_ecosystem(steps=1)
+        # using <steps> only for testing purpose
+
         print(new_ecosystem)
         print('Bears here: ', new_ecosystem.count_animals('bear'))
         print('Fish here: ', new_ecosystem.count_animals('fish'))
+
+
+def string_placement():
+    animals, ecosystem, cycles = initialize_parameters()
+    ecosystem.generate_ecosystem()
+
+    line_to_return = return_recompiled(str(ecosystem))
+    line_to_return += '\nBears here: ' + str(ecosystem.count_animals('bear'))
+    line_to_return += '\nFish here: ' + str(ecosystem.count_animals('fish'))
+
+    for step in range(cycles):
+        new_ecosystem = ecosystem.update_ecosystem(
+            steps=1)  # using <steps> only for testing purpose
+
+        line_to_return += '\n' + return_recompiled(str(new_ecosystem))
+        line_to_return += '\nBears here: ' + str(
+            new_ecosystem.count_animals('bear'))
+        line_to_return += '\nFish here: ' + str(
+            new_ecosystem.count_animals('fish'))
+
+    return line_to_return
 
 
 if __name__ == '__main__':
