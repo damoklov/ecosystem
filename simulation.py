@@ -1,3 +1,4 @@
+import time
 from river import River
 from animals import Bear, Fish
 
@@ -70,6 +71,7 @@ def launch_cycle():
     print('Bears here: ', ecosystem.count_animals('bear'))
     print('Fish here: ', ecosystem.count_animals('fish'))
     for step in range(cycles):
+        time.sleep(0.5)
         new_ecosystem = ecosystem.update_ecosystem(
             steps=1)  # using <steps> only for testing purpose
         print(new_ecosystem)
