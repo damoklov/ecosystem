@@ -54,6 +54,18 @@ class River:
         for i in range(len(self.ecosystem)):
             try:
                 if self.ecosystem[i].name == 'fish':
+                    ecosystem_representation[i] = 'F'
+                elif self.ecosystem[i].name == 'bear':
+                    ecosystem_representation[i] = 'B'
+            except AttributeError:
+                ecosystem_representation[i] = '*'
+        return ''.join(ecosystem_representation)
+
+    def __repr__(self):
+        ecosystem_representation = [str() for j in range(len(self.ecosystem))]
+        for i in range(len(self.ecosystem)):
+            try:
+                if self.ecosystem[i].name == 'fish':
                     ecosystem_representation[i] = '\U0001F41F'
                 elif self.ecosystem[i].name == 'bear':
                     ecosystem_representation[i] = '\U0001F43B'

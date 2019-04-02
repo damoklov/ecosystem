@@ -1,7 +1,7 @@
 import time
 import re
-from river_1 import River
-from animal_1 import Bear, Fish
+from river import River
+from animals import Bear, Fish
 
 
 class Visualization:
