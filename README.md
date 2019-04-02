@@ -10,3 +10,7 @@ Simple ecosystem representation with bears and fish.
 4. Launch TKinter version of an application:
   * Windows: `python tkinterSimulation.py`
   * Linux: `python3 tkinterSimulation.py`
+
+## Watch demo!
+
+![gif](https://github.com/damoklov/ecosystem/blob/master/ecosystem.gif)
