@@ -1,7 +1,7 @@
 import time
 import re
-from river import River
-from animals import Bear, Fish
+from river_1 import River
+from animal_1 import Bear, Fish
 
 
 class Visualization:
@@ -100,7 +100,7 @@ def string_placement():
     animals, ecosystem, cycles = initialize_parameters()
     ecosystem.generate_ecosystem()
 
-    line_to_return = return_recompiled(str(ecosystem))
+    line_to_return = return_recompiled(repr(ecosystem))
     line_to_return += '\nBears here: ' + str(ecosystem.count_animals('bear'))
     line_to_return += '\nFish here: ' + str(ecosystem.count_animals('fish'))
 
@@ -108,7 +108,7 @@ def string_placement():
         new_ecosystem = ecosystem.update_ecosystem(
             steps=1)  # using <steps> only for testing purpose
 
-        line_to_return += '\n' + return_recompiled(str(new_ecosystem))
+        line_to_return += '\n' + return_recompiled(repr(new_ecosystem))
         line_to_return += '\nBears here: ' + str(
             new_ecosystem.count_animals('bear'))
         line_to_return += '\nFish here: ' + str(
