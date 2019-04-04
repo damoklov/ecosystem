@@ -43,7 +43,7 @@ class River:
     def update_ecosystem(self, steps=1):
         """Makes certain amount of steps"""
         for i in range(steps):
-            for animal in self.ecosystem:
+            for animal in list(self.ecosystem):
                 try:
                     self.ecosystem = animal.move(self.ecosystem)
                 except AttributeError:
