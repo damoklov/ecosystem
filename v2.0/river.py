@@ -48,6 +48,8 @@ class River:
                     self.ecosystem = animal.move(self.ecosystem)
                 except AttributeError:
                     self.ecosystem = self.ecosystem
+                except ValueError:
+                    pass
         return self
 
     def __str__(self):
