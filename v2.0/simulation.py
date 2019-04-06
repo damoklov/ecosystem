@@ -1,8 +1,8 @@
 import time
 import re
 import random as rnd
-from river_2 import River
-from animal_2 import Bear, Fish
+from river import River
+from animals import Bear, Fish
 
 
 class Visualization:

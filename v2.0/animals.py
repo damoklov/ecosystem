@@ -35,10 +35,13 @@ class Animal:
             return upd_river
         elif neighbour.name == self.name and neighbour.gender == self.gender:
             if self.strength < neighbour.strength:
-                river[self_index] = Water('wave', rnd.random())
-            else:
+                river[self_index] = neighbour
+                river[neighbour_index] = Water('wave', rnd.random())
+            elif self.strength > neighbour.strength:
                 river[neighbour_index] = self
                 river[self_index] = Water('wave', rnd.random())
+            else:
+                pass
         elif neighbour.name == 'bear' and self.name != 'bear':
             river[self_index] = Water('wave', rnd.random())
         elif neighbour.name != 'bear' and self.name == 'bear':

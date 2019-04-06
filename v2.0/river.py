@@ -1,5 +1,5 @@
 import random as rnd
-from animal_2 import Water
+from animals import Water
 
 
 class River:

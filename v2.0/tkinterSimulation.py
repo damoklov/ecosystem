@@ -9,7 +9,7 @@ lbl = Label(window,
             fg="Black",
             font=("Helvetica", 15))
 lbl.place(x=50, y=50)
-window.geometry('900x600')
+window.geometry('550x500')
 
 
 def clicked():
