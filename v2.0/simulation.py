@@ -1,8 +1,8 @@
 import time
 import re
 import random as rnd
-from river import River
-from animals import Bear, Fish
+from river_2 import River
+from animal_2 import Bear, Fish
 
 
 class Visualization:
@@ -26,8 +26,10 @@ class Visualization:
 
     def create_assets(self):
         """Creates animals and river"""
-        bears = [Bear('bear', rnd.choice([True, False]), rnd.random()) for i in range(self.bears)]
-        fish = [Fish('fish', rnd.choice([True, False]), rnd.random()) for j in range(self.fish)]
+        bears = [Bear('bear', rnd.choice([True, False]), rnd.random()) for i in
+                 range(self.bears)]
+        fish = [Fish('fish', rnd.choice([True, False]), rnd.random()) for j in
+                range(self.fish)]
         animals = bears + fish
         ecosystem = River(animals, self.river)
         cycles = self.cycles

@@ -1,5 +1,5 @@
 import random as rnd
-from animals import Water
+from animal_2 import Water
 
 
 class River:
@@ -43,11 +43,13 @@ class River:
     def update_ecosystem(self, steps=1):
         """Makes certain amount of steps"""
         for i in range(steps):
-            for animal in self.ecosystem:
+            for animal in list(self.ecosystem):
                 try:
                     self.ecosystem = animal.move(self.ecosystem)
                 except AttributeError:
                     self.ecosystem = self.ecosystem
+                except ValueError:
+                    pass
         return self
 
     def __str__(self):
@@ -67,14 +69,13 @@ class River:
         """Represents river as string"""
         ecosystem_representation = [str() for j in range(len(self.ecosystem))]
         for i in range(len(self.ecosystem)):
-            try:
-                animal = self.ecosystem[i]
-                if animal.name == 'fish':
-                    ecosystem_representation[i] = '\U0001F41F'
-                elif animal.name == 'bear':
-                    ecosystem_representation[i] = '\U0001F43B'
-                ecosystem_representation[i] += '%.2f' % animal.strength\
-                                               + str(animal.gender)[0]
-            except AttributeError:
+            animal = self.ecosystem[i]
+            if animal.name == 'fish':
+                ecosystem_representation[i] = '\U0001F41F'
+            elif animal.name == 'bear':
+                ecosystem_representation[i] = '\U0001F43B'
+            elif animal.name == 'otter':
+                ecosystem_representation[i] = '\U0001F98E'
+            else:
                 ecosystem_representation[i] = '\U0001F30A'
         return ''.join(ecosystem_representation)
